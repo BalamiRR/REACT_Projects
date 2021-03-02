@@ -20,7 +20,7 @@ export default class CategoryList extends Component {
             <div>
                 <h3>{this.props.info.title}</h3>
                 <ListGroup>
-                    {/** Her bir kategory icin uret diyoruz ve bizim iki tane category imiz var onlarin ciktisini alicaz */
+                    {/** Her bir kkategory icin uret diyoruz ve bizim iki tane category imiz var onlarin ciktisini alicaz */
                         this.state.categories.map(category => (
                         <ListGroupItem onClick={()=>this.changeCategory(category)} key={category.categoryId}> 
                             {category.categoryName} 
