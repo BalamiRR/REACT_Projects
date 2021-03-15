@@ -41,14 +41,14 @@ export default class App extends Component {
           <Row>
             <Col xs="3">
               <CategoryList 
-                currentCategory={this.state.currentCategory}
-                changeCategory={this.changeCategory} 
-                info={categoryInfo} />
+                currentCategory={this.state.currentCategory}  /*Burasi web sitenin sol taraftaki Category kismi*/
+                changeCategory={this.changeCategory}  /*Burasi bize Categoryi tiklayip, secmemizi saglar*/
+                info={categoryInfo} /> {/*Burasi web sitenin Category kismi*/}
             </Col>
             <Col xs="9">
               <ProductList 
-                products={this.state.products}
-                currentCategory={this.state.currentCategory}
+                products={this.state.products}   /*Burasi web sitenin Product kismi*/
+                currentCategory={this.state.currentCategory}   /*Burasi web sitenin Category kismi*/
                 info={productInfo} />
             </Col>
           </Row>
