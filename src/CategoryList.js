@@ -23,11 +23,11 @@ export default class CategoryList extends Component {
                 <ListGroup>
                     {/** Her bir kkategory icin uret diyoruz ve bizim iki tane category imiz var onlarin ciktisini alicaz */
                     this.state.categories.map(category => (
-                        <ListGroupItem 
+                        <ListGroupItem active={category.categoryName===this.props.currentCategory?true:false}
                             onClick={()=>this.props.changeCategory(category)} 
                             key={category.id}
                         > 
-                            {category.categoryName} 
+                            {category.categoryName}
                         </ListGroupItem>
                     ))}
                 </ListGroup>
@@ -35,4 +35,7 @@ export default class CategoryList extends Component {
             </div>
         )
     }
-}  
+}
+
+
+

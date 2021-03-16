@@ -7,7 +7,8 @@ import { Container, Row, Col } from 'reactstrap';
 export default class App extends Component {
   state = {
     currentCategory: "", 
-    products:[]
+    products:[],
+    cart:[]
   };
 
   componentDidMount(){
@@ -28,6 +29,17 @@ export default class App extends Component {
     .then(response => response.json())
     .then(data => this.setState({products:data}));;
   };
+  
+  addtoCart = (product) =>{
+    let newCart= this.state.cart;
+    var addedItem = newCart.find(c=>c.product.id === product.id);
+    if(addedItem){
+      addedItem.quantity+=1;
+    }else{
+      newCart.push({product:product,quantity:1});
+    }
+    this.setState({cart:newCart});
+  }
 
   render() {
     let productInfo = { title: "ProducList"};
@@ -35,18 +47,17 @@ export default class App extends Component {
     return (
       <div>
         <Container>
-          <Row>
-            <Navi />
-          </Row>
+          <Navi cart={this.state.cart}/>
           <Row>
             <Col xs="3">
               <CategoryList 
-                currentCategory={this.state.currentCategory}  /*Burasi web sitenin sol taraftaki Category kismi*/
                 changeCategory={this.changeCategory}  /*Burasi bize Categoryi tiklayip, secmemizi saglar*/
-                info={categoryInfo} /> {/*Burasi web sitenin Category kismi*/}
+                currentCategory={this.state.currentCategory}  /*Burasi bize en son tikladigimizi listede gosterir*/
+                info={categoryInfo} /> {/*Bu kisim bize CategoryLisst yazdirir sol tablonun ustunde.*/}
             </Col>
             <Col xs="9">
               <ProductList 
+                addtoCart={this.addtoCart}
                 products={this.state.products}   /*Burasi web sitenin Product kismi*/
                 currentCategory={this.state.currentCategory}   /*Burasi web sitenin Category kismi*/
                 info={productInfo} />
